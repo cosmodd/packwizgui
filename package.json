@@ -26,6 +26,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tauri-apps/api": "^1.5.3"
+		"@tauri-apps/api": "^1.5.3",
+		"svelte-hero-icons": "^5.1.0",
+		"toml": "^3.0.0"
 	}
 }
