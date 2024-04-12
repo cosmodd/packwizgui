@@ -20,10 +20,10 @@ async function retrieveProjects(): Promise<Project[]> {
 		if (!await fs.exists(filePath)) return [];
 		const json = await fs.readTextFile(filePath);
 		const projects = JSON.parse(json) as Project[];
-		console.log("Projects retrieved successfully");
+		console.log("[PROJECTS] Projects retrieved successfully");
 		return projects;
 	} catch (error) {
-		console.error("Error retrieving projects:", error);
+		console.error("[PROJECTS] Error retrieving projects:", error);
 		return [];
 	}
 }
