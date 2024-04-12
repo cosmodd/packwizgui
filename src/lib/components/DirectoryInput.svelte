@@ -1,10 +1,15 @@
 <script lang="ts">
-	import { dialog } from "@tauri-apps/api";
+	import { dialog, path } from "@tauri-apps/api";
 	import { FolderOpen, Icon } from "svelte-hero-icons";
 
 	export let value: string = "";
+	let displayValue: string | null = null;
 
-	$: displayValue = value.match(/[^/]*$/)?.[0];
+	$: path.basename(value).then((name) => {
+		displayValue = name;
+	}).catch(() => {
+		displayValue = null;
+	});
 
 	async function askDirectory() {
 		const path = (await dialog.open({
