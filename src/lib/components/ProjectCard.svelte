@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Icon, Trash, FolderOpen } from "svelte-hero-icons";
 	import { projects } from "$lib/stores/projects";
+	import { Icon, Trash } from "svelte-hero-icons";
 	export let padding = "p-4";
 
 	export let project: Project;
@@ -19,15 +19,9 @@
 		class="buttons flex items-center gap-1 transition-all"
 		class:opacity-0={!hovered}
 	>
-		<!-- <a
-			href="/projects/{project.id}"
-			class="text-white bg-blue-500 hover:bg-blue-600 p-1 rounded transition-all"
-		>
-			<Icon src={FolderOpen} micro class="w-4 h-4" />
-		</a> -->
 		<button
 			class="text-white bg-red-500 hover:bg-red-600 p-1 rounded transition-all"
-			on:click={() => projects.delete(project.id)}
+			on:click|preventDefault={() => projects.delete(project.id)}
 		>
 			<Icon src={Trash} micro class="w-4 h-4" />
 		</button>
