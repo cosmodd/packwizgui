@@ -39,6 +39,10 @@ namespace Packwiz {
 			curseforge?: {
 				"file-id": number;
 				"project-id": number;
+			},
+			modrinth?: {
+				"mod-id": string;
+				version: string;
 			}
 		}
 	}
