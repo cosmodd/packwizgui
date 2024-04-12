@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DocumentPlus, ExclamationTriangle, Icon } from "svelte-hero-icons";
+    import { ExclamationTriangle, Icon } from "svelte-hero-icons";
 
 	export let color: "red" | "blue" | "green" | "yellow" = "red";
 
