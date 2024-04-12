@@ -4,6 +4,8 @@
 	const eventDispatcher = createEventDispatcher();
 
 	export let show: boolean = false;
+	let classes: string = "";
+	export { classes as class };
 
 	let dialog: HTMLDialogElement;
 
@@ -42,7 +44,7 @@
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <dialog
 	bind:this={dialog}
-	class="bg-white p-8 rounded-lg shadow-lg transition-all"
+	class="bg-white p-8 rounded-lg shadow-lg transition-all {classes}"
 	on:close={closeDialog}
 	on:click={onClick}
 >
