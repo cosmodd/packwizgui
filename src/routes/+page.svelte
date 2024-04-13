@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Alert from "$lib/components/Alert.svelte";
 	import Dialog from "$lib/components/Dialog.svelte";
-	import DirectoryInput from "$lib/components/DirectoryInput.svelte";
+	import PathInput from "$lib/components/PathInput.svelte";
 	import ProjectCard from "$lib/components/ProjectCard.svelte";
 	import { projects } from "$lib/stores/projects";
 	import { Cog6Tooth, DocumentPlus, Icon } from "svelte-hero-icons";
@@ -52,7 +52,11 @@
 	}
 </script>
 
-<Dialog bind:show={dialogOpened} on:close={dialogClosed} class="max-w-md w-full">
+<Dialog
+	bind:show={dialogOpened}
+	on:close={dialogClosed}
+	class="max-w-md w-full"
+>
 	<h1 class="text-3xl font-bold mb-4">Create Project</h1>
 	<form
 		class="flex flex-col gap-4"
@@ -62,7 +66,11 @@
 			<Alert>{createProjectInformation.alert}</Alert>
 		{/if}
 		<div class="input-group project-name">
-			<label for="name" class="block text-gray-700 text-sm font-bold mb-2 uppercase">Project Name</label>
+			<label
+				for="name"
+				class="block text-gray-700 text-sm font-bold mb-2 uppercase"
+				>Project Name</label
+			>
 			<input
 				type="text"
 				id="name"
@@ -75,7 +83,11 @@
 			/>
 		</div>
 		<div class="input-group project-id">
-			<label for="id" class="block text-gray-700 text-sm font-bold mb-2 uppercase">Project ID</label>
+			<label
+				for="id"
+				class="block text-gray-700 text-sm font-bold mb-2 uppercase"
+				>Project ID</label
+			>
 			<input
 				type="text"
 				id="id"
@@ -87,8 +99,16 @@
 			/>
 		</div>
 		<div class="input-group project-directory">
-			<label for="path" class="block text-gray-700 text-sm font-bold mb-2 uppercase">Directory</label>
-			<DirectoryInput bind:value={createProjectInformation.path} />
+			<label
+				for="path"
+				class="block text-gray-700 text-sm font-bold mb-2 uppercase"
+				>Directory</label
+			>
+			<PathInput
+				class="w-full"
+				directory
+				bind:value={createProjectInformation.path}
+			/>
 		</div>
 		<button
 			type="submit"
