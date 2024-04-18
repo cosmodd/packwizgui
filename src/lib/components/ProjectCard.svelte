@@ -3,7 +3,7 @@
 	import { Icon, Trash } from "svelte-hero-icons";
 	export let padding = "p-4";
 
-	export let project: Project;
+	export let project: Packwiz.Project;
 
 	let hovered = false;
 </script>

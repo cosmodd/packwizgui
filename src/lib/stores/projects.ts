@@ -1,7 +1,7 @@
 import { get, writable } from "svelte/store";
 import { fs, path } from "@tauri-apps/api";
 
-async function storeProjects(projects: Project[]) {
+async function storeProjects(projects: Packwiz.Project[]) {
 	try {
 		const json = JSON.stringify(projects);
 		const filePath = await path.join(await path.appDataDir(), "projects.json");
@@ -14,12 +14,12 @@ async function storeProjects(projects: Project[]) {
 	}
 }
 
-async function retrieveProjects(): Promise<Project[]> {
+async function retrieveProjects(): Promise<Packwiz.Project[]> {
 	try {
 		const filePath = await path.join(await path.appDataDir(), "projects.json");
 		if (!await fs.exists(filePath)) return [];
 		const json = await fs.readTextFile(filePath);
-		const projects = JSON.parse(json) as Project[];
+		const projects = JSON.parse(json) as Packwiz.Project[];
 		console.log("[PROJECTS] Projects retrieved successfully");
 		return projects;
 	} catch (error) {
@@ -29,15 +29,13 @@ async function retrieveProjects(): Promise<Project[]> {
 }
 
 function createProjectsStore() {
-	const { subscribe, set, update } = writable([] as Project[]);
+	const { subscribe, set, update } = writable<Packwiz.Project[]>([]);
 
-	retrieveProjects().then((projects) => {
-		set(projects);
-	});
+	retrieveProjects().then(set);
 
 	return {
 		subscribe,
-		create: (project: Project): void => {
+		create: (project: Packwiz.Project): void => {
 			update((projects) => [...projects, project]);
 			storeProjects(get(projects));
 		},

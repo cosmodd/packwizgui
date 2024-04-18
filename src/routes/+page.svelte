@@ -7,12 +7,12 @@
 	import { Cog6Tooth, DocumentPlus, Icon } from "svelte-hero-icons";
 
 	let dialogOpened: boolean = false;
+	let dialogAlert: string = "";
 
 	let createProjectInformation = {
 		name: "",
 		id: "",
 		path: "",
-		alert: "",
 	};
 
 	function dialogClosed() {
@@ -20,7 +20,6 @@
 			name: "",
 			id: "",
 			path: "",
-			alert: "",
 		};
 	}
 
@@ -28,12 +27,12 @@
 		const { id, path } = createProjectInformation;
 
 		if (path.length === 0) {
-			createProjectInformation.alert = "Please select a directory";
+			dialogAlert = "Please select a directory";
 			return;
 		}
 
 		if ($projects.find((project) => project.id === id)) {
-			createProjectInformation.alert = "Project ID already exists";
+			dialogAlert = "Project ID already exists";
 			return;
 		}
 
@@ -62,8 +61,8 @@
 		class="flex flex-col gap-4"
 		on:submit|preventDefault={handleProjectCreation}
 	>
-		{#if createProjectInformation.alert}
-			<Alert>{createProjectInformation.alert}</Alert>
+		{#if dialogAlert}
+			<Alert>{dialogAlert}</Alert>
 		{/if}
 		<div class="input-group project-name">
 			<label
