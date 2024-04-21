@@ -23,6 +23,16 @@
       },
       "path": {
         "all": true
+      },
+      "shell": {
+        "execute": true,
+        "scope": [
+          {
+            "name": "packwiz",
+            "cmd": "packwiz",
+            "args": true
+          }
+        ]
       }
     },
     "bundle": {
