@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { projects } from "$lib/stores/projects";
-	import { ArrowLeft, Icon } from "svelte-hero-icons";
-	import { fs, path } from "@tauri-apps/api";
-	import toml from "toml";
 	import { project } from "$lib/stores/project";
-	import modrinth from "$lib/utils/modrinth";
+	import { projects } from "$lib/stores/projects";
 	import curseforge from "$lib/utils/curseforge";
+	import modrinth from "$lib/utils/modrinth";
+	import { fs, path } from "@tauri-apps/api";
+	import { ArrowLeft, Icon } from "svelte-hero-icons";
+	import toml from "toml";
 
 	projects.subscribe(async (projects) => {
 		const foundProject = projects.find(
@@ -65,7 +65,7 @@
 </script>
 
 <header class="flex flex-row gap-4 items-center mb-4">
-	<a href="/"><Icon src={ArrowLeft} micro size="24" /></a>
+	<button on:click|preventDefault={() => history.back()}><Icon src={ArrowLeft} micro size="24" /></button>
 	<h1 class="text-3xl font-bold">
 		{$project.name}
 		{#if $project.versions}
