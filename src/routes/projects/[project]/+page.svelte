@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { project } from "$lib/stores/project";
+	import { Icon, Plus, Wallet, PuzzlePiece, Cube, Sun, type IconSource } from "svelte-hero-icons";
 
 	const tabs = {
 		all: "All",
@@ -7,6 +8,13 @@
 		resourcepack: "Resourcepacks",
 		shader: "Shaders",
 	};
+
+	const tabIcons: Record<string, IconSource> = {
+		all: Wallet,
+		mod: PuzzlePiece,
+		resourcepack: Cube,
+		shader: Sun,
+	}
 
 	let filter: "all" | "mod" | "resourcepack" | "shader" = "all";
 	$: filteredMods = $project?.mods?.filter((mod) => {
@@ -29,13 +37,30 @@
 	{#each Object.entries(tabs) as [category, label]}
 		<button
 			role="tab"
-			class="tab transition-all outline-none {category === filter
+			class="tab transition-all outline-none flex gap-2 {category === filter
 				? 'tab-active font-bold'
 				: ''}"
 			on:click|preventDefault={tabChange}
-			data-tab={category}>{label}</button
-		>
+			data-tab={category}>
+			<Icon src={tabIcons[category]} micro class="w-4 h-4 pointer-events-none" />
+			{label}
+		</button>
 	{/each}
+</div>
+
+<div class="actions mb-4 grid grid-cols-3 gap-2">
+	<a class="btn flex-grow" href="/projects/{$project.id}/add?type=mod">
+		<Icon src={Plus} class="w-4 h-4" />
+		Add Mods
+	</a>
+	<a class="btn flex-grow" href="/projects/{$project.id}/add?type=resourcepack">
+		<Icon src={Plus} class="w-4 h-4" />
+		Add Resource Packs
+	</a>
+	<a class="btn flex-grow" href="/projects/{$project.id}/add?type=shader">
+		<Icon src={Plus} class="w-4 h-4" />
+		Add Shaders
+	</a>
 </div>
 
 <div class="wrapper overflow-auto">
