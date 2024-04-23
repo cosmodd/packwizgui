@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { project } from "$lib/stores/project";
-	import { Icon, Plus, Wallet, PuzzlePiece, Cube, Sun, type IconSource } from "svelte-hero-icons";
+	import { Cube, Icon, Plus, PuzzlePiece, Sun, Wallet, type IconSource } from "svelte-hero-icons";
 
 	const tabs = {
 		all: "All",

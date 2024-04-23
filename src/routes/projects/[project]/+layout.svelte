@@ -76,6 +76,6 @@
 		{/if}
 	</h1>
 </header>
-<div class="flex flex-col h-full overflow-auto">
+<div class="flex flex-col h-full overflow-auto grow">
 	<slot />
 </div>
