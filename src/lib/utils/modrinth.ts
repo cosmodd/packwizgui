@@ -12,7 +12,7 @@ interface ModsSearchOptions {
 	projectType?: 'mod' | 'shader' | 'resourcepack';
 }
 
-async function searchProjects(query: string, page: number, options?: ModsSearchOptions): Promise<any> {
+async function searchProjects(query: string, offset: number, options?: ModsSearchOptions): Promise<any> {
 	const url = new URL(URLS.search);
 	const facets = [];
 
@@ -22,7 +22,7 @@ async function searchProjects(query: string, page: number, options?: ModsSearchO
 	} as ModsSearchOptions, options ?? {});
 
 	url.searchParams.set('query', query);
-	url.searchParams.set('offset', (page * 100).toString());
+	url.searchParams.set('offset', offset.toString());
 	url.searchParams.set('limit', '100');
 	if (options?.sortBy) url.searchParams.set('index', options.sortBy);
 

@@ -41,6 +41,7 @@ export interface ModsSearchOptions {
 	sortField?: SortField;
 	modLoaderType?: ModLoaderType;
 	classId?: CategoryId;
+	gameVersion?: string;
 }
 
 async function searchMods(query: string, page: number, options?: ModsSearchOptions) {
@@ -55,7 +56,7 @@ async function searchMods(query: string, page: number, options?: ModsSearchOptio
 	url.searchParams.set('gameId', '432');
 	for (const [key, value] of Object.entries(options))
 		url.searchParams.set(key, value)
-	url.searchParams.set('index', (page * 50).toString());
+	url.searchParams.set('index', page.toString());
 
 	return fetchJson(url);
 }
